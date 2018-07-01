@@ -1,0 +1,42 @@
+{
+  "name": "tbrtc-common",
+  "version": "0.0.1",
+  "main": "tbrtc-messages.js",
+  "scripts": {
+    "test": "mocha-webpack --webpack-config=webpack-test.config.js --require babel-core/register test/*"
+  },
+  "author": "",
+  "dependencies": {
+    "app-root-path": "^2.0.1",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-builtin-extend": "^1.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2017": "^6.24.1",
+    "bowser": "^1.9.3",
+    "browser-detect": "^0.2.22",
+    "chai": "^4.1.2",
+    "clone": "^2.1.1",
+    "detectrtc": "^1.3.5",
+    "html-webpack-plugin": "^2.30.1",
+    "mocha": "^5.0.5",
+    "require-dir": "^1.0.0",
+    "sdp-transform": "^2.4.1",
+    "translations": "^2.2.1",
+    "underscore": "^1.8.3",
+    "uuid": "^3.2.1",
+    "webpack": "^3.10.0",
+    "webpack-node-externals": "^1.7.2",
+    "webrtc-adapter": "^6.1.0"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "mocha-webpack": "^1.1.0",
+    "webpack-plugin-mocha": "0.0.2",
+    "webpack-shell-plugin": "^0.5.0"
+  },
+  "description": ""
+}

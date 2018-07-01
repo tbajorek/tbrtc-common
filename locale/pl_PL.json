@@ -1,0 +1,19 @@
+{
+  "Parameter {pname} given to function {fname}() is not an expected type {ptype}": "Parametr {pname} przekazany do funkcji {fname}() nie jest oczekiwanego typu {ptype}",
+  "The user (id = {uid}) is already a member of the session (id = {sid})": "Użytkownik (id = {uid}) jest już członkiem sesji (id = {sid})",
+  "The user (id = {uid}) is not a member of the session (id = {sid})": "Użytkownik (id = {uid}) nie jest członkiem sesji (id = {sid})",
+  "JSON format of variable {vname} in function {fname}() is wrong": "Format JSON zmiennej {vname} w funkcji {fname}() jest nieprawidłowy",
+  "Constraint {cname} has been used in wrong way": "Ograniczenie {cname} zostało użyte w nieprawidłowy sposób",
+  "Value {vname} does not meet expected value {exname} of the constraint {cname}": "Wartość {vname} nie spełnia oczekiwanej wartości {exname} ograniczenia {cname}",
+  "The given authentication data are incorrect for user {uname}": "Podane dane uwierzytelniające są nieprawidłowe dla użytkownika {uname}",
+  "User {uname} doesn't have permissions to do this action": "Użytownik {uname} nie ma uprawnień do wykonania tej akcji",
+  "Operation {opname} in function {fname}() is not allowed": "Operacja {opname} w funkcji {fname}() jest niedozwolona",
+  "The user {uname} already exists in session {sessid}": "Użytkownik {uname} jest już członkiem sesji {sessid}",
+  "An error with session {sessid} has been occured": "Wystąpił błąd z sesją {sessid}",
+  "The connection {connid} is not found": "Połączenie {connid} nie zostało znalezione",
+  "The connection {sessid} is not found": "Sesja {sessid} nie została znaleziona",
+  "User {uname} is not found": "Użytkownik {uname} nie został znalezione",
+  "An unidentified error occured": "Wystapił niezidentyfikowany błąd",
+  "User {uname} has been connected": "Użytkownik {uname} został podłączony",
+  "Join request of user {uname} for this session is not found": "Zapytanie o dołączenie użytkownika {uname} nie zostało znalezione dla tej sesji"
+}

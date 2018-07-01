@@ -1,0 +1,37 @@
+[
+  {
+    "var1": 12,
+    "var2": "test",
+    "var3": "Error"
+  },
+  {
+    "var1": {
+      "required": true,
+      "exact": 12,
+      "type": "number"
+    },
+    "var2": {
+      "type": ["number", "array"],
+      "children": {
+        "type": "number",
+        "required": true
+      }
+    },
+    "var3": {
+      "type": ["object", "null"],
+      "props": {
+        "prop1": {
+          "required": true,
+          "typeof": "number"
+        },
+        "prop2": {
+          "typeof": "array",
+          "children": {
+            "typeof": "number"
+          }
+        }
+      },
+      "hasFn": ["fn1", "fn2"]
+    }
+  }
+]
