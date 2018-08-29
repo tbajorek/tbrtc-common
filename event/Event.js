@@ -2,6 +2,7 @@ import _ from 'underscore';
 import clone from 'clone';
 import BadParamType from '../exceptions/BadParamType';
 import Translation from '../translate/Translation';
+import EventContainer from './EventContainer';
 
 /**
  * @module tbrtc-server/event
@@ -14,18 +15,21 @@ class Event
 {
     /**
      * Create new event
+     *
      * @param {String} name Event name
      * @param {Function[]|Function} handler Handler to be executed when event occurs
      */
     constructor(name, handler = []) {
         /**
          * Event name
+         *
          * @type {String}
          * @private
          */
         this._name = name;
         /**
          * List of handlers assigned to the event
+         *
          * @type {Function[]}
          * @private
          */
@@ -39,20 +43,32 @@ class Event
         }
         /**
          * Flag if event is currently dispatched
+         *
          * @type {boolean}
          * @private
          */
         this._dispatching = false;
         /**
          * Event container where this event is registered
+         *
          * @type {EventContainer|null}
          * @private
          */
         this._eventContainer = null;
+
+        /**
+         * It contains data passed to event during dispatching it
+         *
+         * @property
+         * @type {object}
+         * @public
+         */
+        this.data = {};
     }
 
     /**
      * Add new handler to the event
+     *
      * @param {Function} handler Handler to be executed when event occurs
      * @returns {Event}
      */
@@ -67,6 +83,7 @@ class Event
 
     /**
      * Remove added handler from the event
+     *
      * @param {Function} handler Handler function
      * @returns {Event}
      */
@@ -86,6 +103,7 @@ class Event
 
     /**
      * Dispatch the event
+     *
      * @param {Object} data Additional data to be sent to handlers
      * @returns {Object}
      */
@@ -114,6 +132,7 @@ class Event
 
     /**
      * Set event container where the event is registered
+     *
      * @param {EventContainer} eventContainer
      * @private
      */
@@ -124,8 +143,11 @@ class Event
     }
 
     /**
-     * Return event name
-     * @returns {String}
+     * Name of the event
+     *
+     * @property
+     * @readonly
+     * @type {String}
      */
     get name() {
         return this._name;
@@ -133,7 +155,10 @@ class Event
 
     /**
      * Return array of handlers
-     * @returns {Function[]}
+     *
+     * @property
+     * @readonly
+     * @type {function[]}
      */
     get handlers() {
         return this._handlers;
@@ -141,7 +166,10 @@ class Event
 
     /**
      * Return connected event container
-     * @returns {EventContainer}
+     *
+     * @property
+     * @readonly
+     * @type {EventContainer}
      */
     get eventContainer() {
         return this._eventContainer;

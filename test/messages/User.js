@@ -5,10 +5,11 @@ import { User as UserModel } from '../../model/User';
 
 const userJSON = {
     id: uuidv4(),
-    name: 'John Black',
+    name: 'John',
+    surname: 'Black',
     email: 'john@example.com'
 };
-const userModel = new UserModel(userJSON.id, userJSON.name, userJSON.email);
+const userModel = new UserModel(userJSON.id, userJSON.name, user.surname, userJSON.email);
 
 const userMessageJSON = {
     id: null,

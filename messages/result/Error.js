@@ -2,10 +2,20 @@ import ValueChecker from '../../utilities/ValueChecker';
 import Translation from '../../translate/Translation';
 import {Message} from "../Message";
 
-const uuidv4 = require('uuid');
-
+/**
+ * Error message which is sent when an error has been occurred
+ *
+ * @module tbrtc-common/messages/result
+ */
 export class Error extends Message
 {
+    /**
+     * Initialization of the message
+     *
+     * @param {number} code Error code
+     * @param {string|null} content Message content which is human readable
+     * @param {object} details Object with all available data
+     */
     constructor(code, content = null, details = {}) {
         ValueChecker.check({ code, content, details }, {
             "code": {
@@ -26,22 +36,55 @@ export class Error extends Message
         super('error', sessionId, null, {code, content, details});
     }
 
+    /**
+     * Error number
+     *
+     * @property
+     * @readonly
+     * @type {number}
+     */
     get code() {
         return this.data.code;
     }
 
+    /**
+     * Translated message content
+     *
+     * @property
+     * @readonly
+     * @type {string}
+     */
     get content() {
         return Translation.instance._(this.data.content, this.data.details);
     }
 
+    /**
+     * Object with all available data of the error
+     *
+     * @property
+     * @readonly
+     * @type {object}
+     */
     get details() {
         return this.data.details;
     }
 
+    /**
+     * It creates an empty message (used for deserialization mechanism)
+     *
+     * @return {Error}
+     * @private
+     */
     static _createEmpty() {
         return new Error(0, '');
     }
 
+    /**
+     * It returns a specified human readable message for the passed error code
+     *
+     * @param {number} code Error code
+     * @return {string}
+     */
     static matchContent(code) {
         if(code === Error.codes.BAD_AUTH) {
             return "The given authentication data are incorrect for user {uname}";
@@ -64,6 +107,12 @@ export class Error extends Message
         }
     }
 
+    /**
+     * It contains all available error codes
+     *
+     * @readonly
+     * @type {object}
+     */
     static get codes() {
         return {
             BAD_AUTH: 1,

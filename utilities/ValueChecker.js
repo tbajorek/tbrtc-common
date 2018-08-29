@@ -43,7 +43,7 @@ const ValueChecker = {
         if(ValueChecker.instanceof(expected, Object)) {
             return expected.constructor.name;
         } else if(ValueChecker.typeof(expected, 'function')) {
-            return expected.name;
+            return (!!expected.constructor && !!expected.constructor.name) ? expected.constructor.name :expected.name;
         } else {
             return JSON.stringify(expected);
         }

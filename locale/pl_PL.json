@@ -11,9 +11,12 @@
   "The user {uname} already exists in session {sessid}": "Użytkownik {uname} jest już członkiem sesji {sessid}",
   "An error with session {sessid} has been occured": "Wystąpił błąd z sesją {sessid}",
   "The connection {connid} is not found": "Połączenie {connid} nie zostało znalezione",
-  "The connection {sessid} is not found": "Sesja {sessid} nie została znaleziona",
+  "The session {sessid} is not found": "Sesja {sessid} nie została znaleziona",
   "User {uname} is not found": "Użytkownik {uname} nie został znalezione",
   "An unidentified error occured": "Wystapił niezidentyfikowany błąd",
   "User {uname} has been connected": "Użytkownik {uname} został podłączony",
-  "Join request of user {uname} for this session is not found": "Zapytanie o dołączenie użytkownika {uname} nie zostało znalezione dla tej sesji"
+  "Join request of user {uname} for this session is not found": "Zapytanie o dołączenie użytkownika {uname} nie zostało znalezione dla tej sesji",
+  "Response from server can not be correctly interpreted": "Odpowiedź z serwera nie może być poprawnie zinterpretowana",
+  "Event {ename} is not found in a containerof events": "Zdarzenie {ename} nie zostało znalezione w kontenerze zdarzeń",
+  "Bad status code received from server: {scode} ({stext})": "Zły kod statusu otrzymany z serwera: {scode} ({stext})"
 }

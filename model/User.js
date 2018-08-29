@@ -1,11 +1,10 @@
 import { AbstractModel } from './AbstractModel';
 import ValueChecker from '../utilities/ValueChecker';
-import { Sdp } from "./Sdp";
 import OperationNotAllowed from "../exceptions/OperationNotAllowed";
 
 export class User extends AbstractModel
 {
-    constructor(id, name, email, connectionId = null) {
+    constructor(id, name, surname, email, avatar = null, connectionId = null) {
         ValueChecker.check({ connectionId }, {
             "connectionId": {
                 "typeof": ['null', 'string']
@@ -14,9 +13,12 @@ export class User extends AbstractModel
         super();
         this._id = id;
         this._name = name;
+        this._surname = surname;
         this._email = email;
+        this._avatar = avatar;
         this._connectionId = connectionId;
         this._originalId = null;
+        this._exposedFields = ['id', 'name', 'email', 'surname', 'avatar', 'connectionId'];
     }
 
     get id() {
@@ -31,8 +33,16 @@ export class User extends AbstractModel
         return this._name;
     }
 
+    get surname() {
+        return this._surname;
+    }
+
     get email() {
         return this._email;
+    }
+
+    get avatar() {
+        return this._avatar;
     }
 
     get connectionId() {
@@ -56,16 +66,7 @@ export class User extends AbstractModel
     }
 
     fromJSON(inputJSON) {
-        return new this(inputJSON.id, inputJSON.name, inputJSON.email, inputJSON.connectionId);
-    }
-
-    get _serializedMap() {
-        return {
-            "id":"_id",
-            "name": "_name",
-            "email": "_email",
-            "connectionId": "_connectionId",
-        };
+        return new this(inputJSON.id, inputJSON.name, inputJson.surname, inputJSON.email, inputJSON.avatar, inputJSON.connectionId);
     }
 
     static _createEmpty() {
