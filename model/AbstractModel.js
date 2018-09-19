@@ -20,18 +20,27 @@ export class AbstractModel
      *
      * @return {object}
      */
-    toUnsafeJSON() {
+    toUnsafeJSON(safe = false) {
         let result = {};
         let self = this;
         _.each(this._serializedMap, (value, key) => {
             if(typeof self !== 'undefined' && value in self) {
-                if(typeof self[value] === 'object' && self[value] !== null && 'toJSON' in self[value]) {
-                    result[key] = self[value].toJSON();
+                if(typeof self[value] === 'object' && self[value] !== null && ('toJSON' in self[value] || 'toUnsafeJSON' in self[value])) {
+                    if(safe) {
+                        result[key] = self[value].toJSON();
+                    } else {
+                        result[key] = self[value].toUnsafeJSON();
+                    }
+
                 } else if(Array.isArray(self[value])) {
                     let tmp = [];
                     self[value].forEach((elem) => {
-                        if(typeof elem === 'object' && 'toJSON' in elem) {
-                            tmp.push(elem.toJSON());
+                        if(typeof elem === 'object' && ('toJSON' in elem || 'toUnsafeJSON' in elem)) {
+                            if(safe) {
+                                tmp.push(elem.toJSON());
+                            } else {
+                                tmp.push(elem.toUnsafeJSON());
+                            }
                         } else {
                             tmp.push(elem);
                         }
@@ -52,7 +61,7 @@ export class AbstractModel
      * @return {object}
      */
     toJSON() {
-        return AbstractModel.hideSecureFields(this.toUnsafeJSON());
+        return AbstractModel.hideSecureFields(this.toUnsafeJSON(true));
     }
 
     /**

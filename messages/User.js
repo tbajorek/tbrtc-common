@@ -32,7 +32,7 @@ export class User extends Message
      */
     toJSON() {
         if(this.type === 'user.connect') {
-            return super.toUnsafeJSON();
+            return this.toUnsafeJSON();
         } else {
             return super.toJSON();
         }

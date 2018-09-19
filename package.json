@@ -1,6 +1,6 @@
 {
   "name": "tbrtc-common",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "main": "tbrtc-messages.js",
   "scripts": {
     "test": "mocha-webpack --webpack-config=webpack-test.config.js --require babel-core/register test/*"
@@ -10,7 +10,6 @@
     "app-root-path": "^2.0.1",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-builtin-extend": "^1.1.2",
-    "babel-polyfill": "^6.26.0",
     "babel-preset-es2017": "^6.24.1",
     "bowser": "^1.9.3",
     "browser-detect": "^0.2.22",

@@ -27,7 +27,7 @@ class Requester {
                 method,
                 headers
             };
-            if(payload !== null) {
+            if(payload !== null && ['POST', 'PUT'].indexOf(method.toUpperCase()) >= 0) {
                 params.body = JSON.stringify(payload)
             }
             let responseObj = {};
@@ -48,29 +48,39 @@ class Requester {
                         }));
                     }
                     responseObj = response;
-                    try {
-                        return response.json();
-
-                    } catch(e) {
-                        throw new Error(Translation.instance._('Response from server can not be correctly interpreted'));
+                    return response.text();
+                }
+            ).then(text => {
+                    if(text !== '') {
+                        try {
+                            return JSON.parse(text);
+                        } catch(e) {console.log('exception', e);
+                            throw new Error(Translation.instance._('Response from server can not be correctly interpreted'));
+                        }
                     }
+                    return text;
                 }
             ).then(json => {
                 if(typeof allActions.success === 'function') {
+                    if(typeof json === 'string') {
+                        json = {};
+                    }
                     dispatch(allActions.success(
                         {...json, _responseData: responseObj, _requestPayload: payload}
                     ));
                 }
             }).catch(error => {
                 if(typeof allActions.error === 'function') {
-                    dispatch(allActions.error(error));
+                    const newError = error;
+                    newError._requestPayload = payload;
+                    dispatch(allActions.error(newError));
                 }
             });
         }
     }
 
-    static get(resource, succesCode = 200, actions = null, token = null) {
-        return Requester.request(resource, 'GET', succesCode, null, actions, token);
+    static get(resource, succesCode = 200, payload = null, actions = null, token = null) {
+        return Requester.request(resource, 'GET', succesCode, payload, actions, token);
     }
 
     static post(resource, successCode = 200, payload = null, actions = null, token = null) {
@@ -81,8 +91,8 @@ class Requester {
         return Requester.request(resource, 'PUT', successCode, payload, actions, token);
     }
 
-    static delete(resource, successCode = 200, actions = null, token = null) {
-        return Requester.request(resource, 'DELETE', successCode, null, actions, token);
+    static delete(resource, successCode = 200, payload = null, actions = null, token = null) {
+        return Requester.request(resource, 'DELETE', successCode, payload, actions, token);
     }
 }
 

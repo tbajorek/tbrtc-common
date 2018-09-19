@@ -174,7 +174,7 @@ export class Message extends AbstractModel
     static fromJSON(input) {
         let object = super.fromJSON(input);
         if(object.user !== null) {
-            object._user = User.fromJSON(object.user);
+            object._user = Message.userModel.fromJSON(object.user);
         }
         if(object.data !== null) {
             object.data = new Data(object.data);
@@ -192,3 +192,5 @@ export class Message extends AbstractModel
         return new Message('message', null, null);
     }
 }
+
+Message.userModel = User;

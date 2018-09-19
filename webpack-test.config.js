@@ -5,6 +5,9 @@ var WebpackShellPlugin = require('webpack-shell-plugin');
 var root = require('app-root-path');
 
 var config = {
+    resolve: {
+        symlinks: false,
+    },
     plugins: [
         new webpack.DefinePlugin({
             ROOT_DIR: JSON.stringify(root+"/locale")

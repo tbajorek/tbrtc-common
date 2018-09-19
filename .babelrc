@@ -13,7 +13,10 @@
     "plugins": [
         ["transform-decorators-legacy"],
         ["transform-object-rest-spread"],
-        ["transform-es2015-destructuring"]
+        ["transform-es2015-destructuring"],
+        ["babel-plugin-transform-builtin-extend", {
+            "globals": ["Error", "Array"]
+        }]
     ],
     "env": {
         "test": {
