@@ -34,14 +34,12 @@ class  MessageFactory
             case 'session.reject':
             case 'session.data':
             case 'session.leave':
-            case 'session.disconnect':
                 return Session.fromJSON(json);
             case 'answer':
             case 'offer':
                 return SdpTransfer.fromJSON(json);
             case 'user.init':
             case 'user.connect':
-            case 'user.disconnect':
                 return  User.fromJSON(json);
             case 'user.communication':
                 return  Communication.fromJSON(json);
