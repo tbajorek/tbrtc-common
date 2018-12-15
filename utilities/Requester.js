@@ -12,7 +12,7 @@ class Requester {
             error: null
         });
         return dispatch => {
-            const baseUrl = __BACKEND_SERVER_URL__;
+            const baseUrl = process.env.BACKEND_SERVER_URL;
             if(typeof allActions.request === 'function') {
                 dispatch(allActions.request(payload));
             }
