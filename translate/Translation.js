@@ -33,7 +33,7 @@ commonTrans.keys().forEach(file => {
     Translation.instance._locales[key] = commonTrans(file);
 });
 
-let localTrans = require.context(process.env.LOCALE_DIR, false, /\.json$/);
+let localTrans = require.context(__LOCALE_DIR__, false, /\.json$/);
 localTrans.keys().forEach(file => {
     let key = file.replace(/\.\/([a-zA-Z\_]{5})\.json/g, "$1");
     Translation.instance._locales[key] = Object.assign({}, Translation.instance._locales[key], localTrans(file));
