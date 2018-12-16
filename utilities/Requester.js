@@ -13,6 +13,12 @@ class Requester {
         });
         return dispatch => {
             const baseUrl = process.env.BACKEND_SERVER_URL;
+            if(typeof baseUrl !== 'string') {
+                throw new Error(Translation.instance._('Constant value {cname} is not defined in module {mname}', {
+                    cname: 'BACKEND_SERVER_URL',
+                    mname: 'tbrtc-common/Utilities/Requester'
+                }));
+            }
             if(typeof allActions.request === 'function') {
                 dispatch(allActions.request(payload));
             }
