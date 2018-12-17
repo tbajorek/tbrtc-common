@@ -13,7 +13,7 @@ class EventNotFound extends Error
      * @param {string} ename Event name
      */
     constructor(ename) {
-        super(Translation.instance._('Event {ename} is not found in an event\'s container', {
+        super(Translation.instance._('Event {ename} is not found in a container of events', {
             ename,
         }));
         this.name = 'EventNotFound';

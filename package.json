@@ -1,6 +1,6 @@
 {
   "name": "tbrtc-common",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "main": "tbrtc-messages.js",
   "scripts": {
     "test": "mocha-webpack --webpack-config=webpack-test.config.js --require babel-core/register test/*"
