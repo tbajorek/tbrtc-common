@@ -8,7 +8,7 @@ class Replacer {
             outputString = Replacer.data[inputString];
         } else {
             outputString = inputString;
-            console.warn('Translation not found!');
+            console.warn('Translation not found ('+inputString+')!');
         }
         return Replacer.replaceExpressions(outputString, data);
     }

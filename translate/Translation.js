@@ -39,6 +39,6 @@ localTrans.keys().forEach(file => {
     Translation.instance._locales[key] = Object.assign({}, Translation.instance._locales[key], localTrans(file));
 });
 
-Translation.instance.setLocale('en_EN');//default is English language
+Translation.instance.setLocale('pl_PL');//default is Polish language
 
 export default Translation;

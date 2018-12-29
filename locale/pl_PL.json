@@ -19,5 +19,6 @@
   "Response from server can not be correctly interpreted": "Odpowiedź z serwera nie może być poprawnie zinterpretowana",
   "Event {ename} is not found in a containerof events": "Zdarzenie {ename} nie zostało znalezione w kontenerze zdarzeń",
   "Bad status code received from server: {scode} ({stext})": "Zły kod statusu otrzymany z serwera: {scode} ({stext})",
-  "Event {ename} is not found in a container of events": "Zdarzenie {ename} nie zostało znalezione w żadnym kontenerze"
+  "Event {ename} is not found in a container of events": "Zdarzenie {ename} nie zostało znalezione w żadnym kontenerze",
+  "Network request failed": "Błąd połączenia z siecią"
 }
