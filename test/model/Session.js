@@ -4,43 +4,60 @@ import { Session } from '../../model/Session'
 
 const user1JSON = {
     "id": 15,
-    "name": "John Black",
-    "email": "jblack@example.com"
+    "name": "John",
+    "surname": "Black",
+    "email": "jblack@example.com",
+    "avatar": null,
+    "connectionId": null,
+    "_securedFields": []
 };
 
 const user2JSON = {
     "id": 1,
-    "name": "Bobbie Edgardo",
-    "email": "bobbie@example.com"
+    "name": "Bobbie",
+    "surname": "Edgardo",
+    "email": "bobbie@example.com",
+    "avatar": null,
+    "connectionId": null,
+    "_securedFields": []
 };
 
 const user3JSON = {
     "id": 35,
-    "name": "Spencer Sosimo",
-    "email": "spencer@example.com"
+    "name": "Spencer",
+    "surname": "Sosimo",
+    "email": "spencer@example.com",
+    "avatar": null,
+    "connectionId": null,
+    "_securedFields": []
 };
 
 const user4JSON = {
     "id": 11,
-    "name": "Martin Bush",
-    "email": "martinb@example.com"
+    "name": "Martin",
+    "surname": "Bush",
+    "email": "martinb@example.com",
+    "avatar": null,
+    "connectionId": null,
+    "_securedFields": []
 };
 
 const sessionJSON = {
     "id": 17,
     "creator": user1JSON,
     "members": [
-        user2JSON, user3JSON
-    ]
+        user2JSON, user3JSON, user1JSON
+    ],
+    "_securedFields": []
 };
 
-var user1 = new User(user1JSON.id, user1JSON.name, user1JSON.email);
-var user2 = new User(user2JSON.id, user2JSON.name, user2JSON.email);
-var user3 = new User(user3JSON.id, user3JSON.name, user3JSON.email);
-var user4 = new User(user4JSON.id, user4JSON.name, user4JSON.email);
+const user1 = new User(user1JSON.id, user1JSON.name, user1JSON.surname, user1JSON.email);
+const user2 = new User(user2JSON.id, user2JSON.name, user2JSON.surname, user2JSON.email);
+const user3 = new User(user3JSON.id, user3JSON.name, user3JSON.surname, user3JSON.email);
+const user4 = new User(user4JSON.id, user4JSON.name, user4JSON.surname, user4JSON.email);
 const members = [user2, user3];
 
-var session = new Session(sessionJSON.id, user1, members);
+const session = new Session(sessionJSON.id, user1, members);
 
 describe('model > Session', function() {
     describe('#constructor()', function() {
@@ -74,7 +91,7 @@ describe('model > Session', function() {
     describe('#memberJoin()', function() {
         it('should join User model to the session', function() {
             assert.deepEqual(session.hasMember(user4), false);
-            session.memberJoin(user4);
+            session.join(user4);
             assert.deepEqual(session.hasMember(user4), true);
         });
     });
@@ -82,7 +99,7 @@ describe('model > Session', function() {
     describe('#memberLeave()', function() {
         it('should leave User model from the session', function() {
             assert.deepEqual(session.hasMember(user4), true);
-            session.memberLeave(user4.id);
+            session.leave(user4.id);
             assert.deepEqual(session.hasMember(user4), false);
         });
     });

@@ -1,14 +1,16 @@
-import Event from '../../src/event/Event';
-import EventContainer from '../../src/event/EventContainer';
-import EventNotFound from '../../../tbrtc-server/src/exceptions/EventNotFound';
+import Event from '../../event/Event';
+import EventContainer from '../../event/EventContainer';
+import EventNotFound from '../../exceptions/EventNotFound';
 
 const { assert } = require('chai');
 
-const handler1 = (e) => { e.data.nval = -e.data.val; return e; };
-const handler2 = (e) => { e.data.tval = 8; return e; };
-const event1 = new Event('event1', handler1, { val: 15 });
+let executed = false;
+let executed2 = false;
+const handler1 = (e) => { executed = e.data; };
+const handler2 = (e) => { executed2 = e.data; };
+const event1 = new Event('event1', handler1);
 
-const container = EventContainer.instance;
+const container = EventContainer.createInstance();
 
 describe('event > EventContainer', () => {
     describe('#get instance()', () => {
@@ -28,11 +30,10 @@ describe('event > EventContainer', () => {
 
     describe('#dispatch()', () => {
         it('should iterate through all events', () => {
-            const oldData = { val: 15 };
-            assert.deepEqual(container.event('event1').data, oldData);
+            assert.deepEqual(container.event('event1').data, {});
             container.dispatch('event1', { aval: 11 });
-            const newData = { val: 15, nval: -15, aval: 11, };
-            assert.deepEqual(container.event('event1').data, newData);
+            const newData = { aval: 11, };
+            assert.deepEqual(executed, newData);
         });
     });
 
@@ -47,17 +48,18 @@ describe('event > EventContainer', () => {
     describe('#on()', () => {
         it('should attach new handler to specified event', () => {
             container.on('event1', handler2);
-            container.dispatch('event1');
             const data = {
                 val: 15, nval: -15, tval: 8, aval: 11,
             };
-            assert.deepEqual(container.event('event1').data, data);
+            container.dispatch('event1', data);
+            assert.deepEqual(executed, data);
+            assert.deepEqual(executed2, data);
         });
 
         it('should create empty event if it doesn\'t exist and attach new handler to it', () => {
             container.on('event2', handler2);
-            container.dispatch('event2');
-            assert.deepEqual(container.event('event2').data, { tval: 8 });
+            container.dispatch('event2', { tval: 8 });
+            assert.deepEqual(executed2, { tval: 8 });
         });
     });
 

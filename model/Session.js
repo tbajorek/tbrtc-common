@@ -55,7 +55,7 @@ export class Session extends AbstractModel
     /**
      * It checks if user with the given identifier is a member of the session
      *
-     * @param {string} userId User identifier
+     * @param {string|User} userId User identifier
      * @return {boolean}
      */
     hasMember(userId) {

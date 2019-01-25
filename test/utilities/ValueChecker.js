@@ -59,10 +59,12 @@ describe('utilities > ValueChecker', function() {
             assert.equal(ValueChecker.exact(15, 15), true);
             assert.equal(ValueChecker.exact(15, 10), false);
         });
+    });
 
+    describe('#inside()', function() {
         it('should check if a value is one of allowed values', function() {
-            assert.equal(ValueChecker.exact(15, [15, 10]), true);
-            assert.equal(ValueChecker.exact(3, [15, 10]), false);
+            assert.equal(ValueChecker.inside(15, [15, 10]), true);
+            assert.equal(ValueChecker.inside(3, [15, 10]), false);
         });
     });
 
@@ -175,18 +177,18 @@ describe('utilities > ValueChecker', function() {
 
     describe('#check()', function() {
         it('should check if given parameters meet given constraints', function() {
-            var vars = {
+            const vars = {
                 "var1": 12,
                 "var2": "test",
                 "var3": new Child(),
                 "var4": [new Child(), new User()]
             };
 
-            var constraints = {
+            const constraints = {
                 "var1": {
                     "required": true,
                     "typeof": "number",
-                    "exact": [12, 15]
+                    "inside": [12, 15]
                 },
                 "var2": {
                     "typeof": "string"

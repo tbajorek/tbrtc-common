@@ -10,7 +10,7 @@ var config = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            ROOT_DIR: JSON.stringify(root+"/locale")
+            __LOCALE_DIR__: JSON.stringify(root+"/locale")
         })
     ],
     module: {

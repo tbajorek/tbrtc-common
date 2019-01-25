@@ -1,5 +1,6 @@
 import { Message } from './Message';
 import { Sdp } from '../model/Sdp';
+import { User as UserModel} from '../model/User';
 import ValueChecker from '../utilities/ValueChecker';
 
 /**

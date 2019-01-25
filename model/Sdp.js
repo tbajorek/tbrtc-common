@@ -207,7 +207,9 @@ export class Sdp extends AbstractModel {
      */
     static fromJSON(input) {
         const object = super.fromJSON(input);
-        object._sender = User.fromJSON(object.sender);
+        if(object.sender !== null) {
+            object._sender = User.fromJSON(object.sender);
+        }
         return object;
     }
 }

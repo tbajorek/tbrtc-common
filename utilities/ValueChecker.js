@@ -81,10 +81,10 @@ const ValueChecker = {
         return false;
     },
     instanceof: (value, type, name = '<undefined_name>') => {
-        type = ValueChecker._ensureArray(type);
         if(!(ValueChecker.required(value) && ValueChecker.typeof(value, 'object'))) {
             return true;
         }
+        type = ValueChecker._ensureArray(type);
         for(const singleType of type) {
             if(value instanceof singleType) {
                 return true;

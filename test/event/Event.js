@@ -1,6 +1,6 @@
 import {assert} from 'chai';
-import Event from '../../src/event/Event';
-import EventContainer from '../../src/event/EventContainer';
+import Event from '../../event/Event';
+import EventContainer from '../../event/EventContainer';
 
 const handler1 = (e) => {
     assert.instanceOf(e, Event);//param is current Event object

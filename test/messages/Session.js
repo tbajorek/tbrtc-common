@@ -1,41 +1,52 @@
 import { assert } from 'chai';
 import { Session } from '../../messages/Session';
+import { User } from '../../model/User';
+import Data from "../../model/Data";
 
 const uuidv4 = require('uuid');
 
 const userId = uuidv4();
 const sessionId = uuidv4();
-const sessNew = new Session('session.new', null, userId);
-const sessJoin = new Session('session.join', sessionId, userId);
-const sessLeave = new Session('session.leave', sessionId, userId);
+const user = new User(userId, '', '', '');
+const sessNew = new Session('session.new', null, user);
+const sessJoin = new Session('session.join', sessionId, user);
+const sessLeave = new Session('session.leave', sessionId, user);
 const sessClose = new Session('session.close', sessionId);
 
 const sessNewJSON = {
     id: sessNew.id,
     type: "session.new",
     sessionId: null,
-    data: { userId }
+    user: user.toJSON(),
+    data: new Data(null),
+    "_securedFields": []
 };
 
 const sessJoinJSON = {
     id: sessJoin.id,
     type: "session.join",
     sessionId: sessionId,
-    data: { userId }
+    user: user.toJSON(),
+    data: new Data(null),
+    "_securedFields": []
 };
 
 const sessLeaveJSON = {
     id: sessLeave.id,
     type: "session.leave",
     sessionId: sessionId,
-    data: { userId }
+    user: user.toJSON(),
+    data: new Data(null),
+    "_securedFields": []
 };
 
 const sessCloseJSON = {
     id: sessClose.id,
     type: "session.close",
     sessionId: sessionId,
-    data: { userId: null }
+    user: null,
+    data: new Data(null),
+    "_securedFields": []
 };
 
 describe('messages > Session', function() {
@@ -59,10 +70,10 @@ describe('messages > Session', function() {
 
     describe('#userId()', function() {
         it('should get user id from session message', function() {
-            assert.equal(sessNew.userId, userId);
-            assert.equal(sessJoin.userId, userId);
-            assert.equal(sessLeave.userId, userId);
-            assert.equal(sessClose.userId, null);
+            assert.equal(sessNew.user, user);
+            assert.equal(sessJoin.user, user);
+            assert.equal(sessLeave.user, user);
+            assert.equal(sessClose.user, null);
         });
     });
 });

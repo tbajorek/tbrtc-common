@@ -20,7 +20,7 @@ class ValueIsIncorrect extends Error
             "cname": cname,
             "exname": exname
         }));
-        this.name = 'ValueIsIncorrect';console.log('exception');
+        this.name = 'ValueIsIncorrect';
     }
 }
 

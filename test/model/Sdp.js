@@ -1,7 +1,6 @@
 import { assert } from 'chai';
 import transform from 'sdp-transform'
 import { Sdp } from '../../model/Sdp'
-import _ from 'underscore'
 
 const sdp = 'v=0\n' +
     'o=jdoe 2890844526 2890842807 IN IP4 10.47.16.5\n' +
@@ -17,7 +16,7 @@ const sdp = 'v=0\n' +
     'b=TIAS:1000\n' +
     'a=rtpmap:99 h263-1998/90000\n';
 
-const sdpModel = new Sdp(sdp, 'firefox');
+const sdpModel = new Sdp('offer', sdp, null, 'firefox');
 const parsed = transform.parse(sdp);
 
 const newSdp = 'v=0\n' +
@@ -36,16 +35,24 @@ const newSdp = 'v=0\n' +
 
 const newParsed = transform.parse(newSdp);
 
+const sdpJSON = {
+    data: sdp,
+    originalBrowser: 'firefox',
+    "_securedFields": [],
+    sender: null,
+    type: 'offer'
+};
+
 describe('model > Sdp', function() {
     describe('#toJSON()', function() {
         it('should convert model to JSON object', function() {
-            assert.deepEqual(sdpModel.toJSON(), { data: sdp, originalBrowser: 'firefox' });
+            assert.deepEqual(sdpModel.toJSON(), sdpJSON);
         });
     });
 
     describe('#fromJSON()', function() {
         it('should create model from JSON object', function() {
-            assert.deepEqual(Sdp.fromJSON({ data: sdp, originalBrowser: 'firefox' }), sdpModel);
+            assert.deepEqual(Sdp.fromJSON(sdpJSON), sdpModel);
         });
     });
 

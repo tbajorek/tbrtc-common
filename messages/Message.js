@@ -132,6 +132,7 @@ export class Message extends AbstractModel
             "session.new",
             "session.request",
             "session.stop",
+            "session.join",
             "session.confirm",
             "session.reject",
             "session.data",

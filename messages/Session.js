@@ -29,6 +29,6 @@ export class Session extends Message
      * @private
      */
     static _createEmpty() {
-        return new Session('message', null, null);
+        return new Session('message');
     }
 }

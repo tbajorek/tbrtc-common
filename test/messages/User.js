@@ -2,22 +2,26 @@ import { assert } from 'chai';
 import uuidv4 from 'uuid';
 import { User as UserMessage } from '../../messages/User';
 import { User as UserModel } from '../../model/User';
+import Data from "../../model/Data";
 
 const userJSON = {
     id: uuidv4(),
     name: 'John',
     surname: 'Black',
-    email: 'john@example.com'
+    email: 'john@example.com',
+    "_securedFields": [],
+    "avatar": null,
+    "connectionId": null
 };
-const userModel = new UserModel(userJSON.id, userJSON.name, user.surname, userJSON.email);
+const userModel = new UserModel(userJSON.id, userJSON.name, userJSON.surname, userJSON.email);
 
 const userMessageJSON = {
     id: null,
     type: 'user.connect',
     sessionId: null,
-    data: {
-        user: userJSON
-    }
+    user: userJSON,
+    data: new Data(null),
+    "_securedFields": []
 };
 
 describe('messages > User', function() {
