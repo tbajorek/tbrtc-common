@@ -1,5 +1,5 @@
 /**
- * It creates standarized actions for Redux
+ * It creates standardized actions for Redux
  */
 class ActionCreator {
     static createAction(type, payload = {}) {

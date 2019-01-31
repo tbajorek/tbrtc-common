@@ -3,6 +3,7 @@ import _ from 'underscore';
 export class Unique {
     constructor(initData = [], key = 'id') {
         this._data = {};
+        this._length = 0;
         if (initData.length) {
             for (const object of initData) {
                 this.push(object, key);
@@ -11,6 +12,9 @@ export class Unique {
     }
 
     push(object, key = 'id') {
+        if(!(object[key] in this._data)) {
+            ++this._length;
+        }
         this._data[object[key]] = object;
         return this;
     }
@@ -20,23 +24,33 @@ export class Unique {
     }
 
     set(index, newValue) {
+        if(!(index in this._data)) {
+            ++this._length;
+        }
         this._data[index] = newValue;
         return this;
     }
 
     remove(index) {
+        if(index in this._data) {
+            --this._length;
+        }
         delete this._data[index];
         return this;
     }
 
     forEach(callback) {
-        for(const element of this._data) {
+        for(const element of this.toArray()) {
             callback(element);
         }
     }
 
     get data() {
         return this._data;
+    }
+
+    get length() {
+        return this._length;
     }
 
     toArray() {

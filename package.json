@@ -3,7 +3,6 @@
   "version": "0.2.1",
   "main": "tbrtc-messages.js",
   "scripts": {
-    "test2": "mocha-webpack --webpack-config=webpack-test.config.js --require babel-core/register --require mocha-bootstrap.js test/*",
     "test": "mocha --compilers js:babel-core/register test/*"
   },
   "author": "",
